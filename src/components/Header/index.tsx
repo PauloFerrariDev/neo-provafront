@@ -1,15 +1,15 @@
 import React from "react";
-import pokedexImg from "src/assets/pokedex-logo-360-130.png";
-import enteiImg from "src/assets/charizard.png";
-import suicuneImg from "src/assets/blastoise-img.png";
+import pokedexImg from "src/assets/pokedex.png";
+import charizardImg from "src/assets/charizard.png";
+import blastoiseImg from "src/assets/blastoise.png";
 import "./style.scss";
 
 const Header = () => {
   return (
     <div className="Header">
-      <img src={enteiImg} alt="Entei" className="pokemonsLogo" />
+      <img src={charizardImg} alt="Charizard" className="pokemonsLogo" />
       <img src={pokedexImg} alt="Pokédex" className="pokedexLogo" />
-      <img src={suicuneImg} alt="Suicune" className="pokemonsLogo" />
+      <img src={blastoiseImg} alt="Blastoise" className="pokemonsLogo" />
     </div>
   );
 };

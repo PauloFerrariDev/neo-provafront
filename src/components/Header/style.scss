@@ -1,0 +1,22 @@
+@mixin imagesLogo {
+  max-width: 100%;
+  height: auto;
+}
+
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  background-color: #222;
+
+  .pokedexLogo {
+    @include imagesLogo;
+    margin: 0 30px;
+  }
+
+  .pokemonsLogo {
+    @include imagesLogo;
+  }
+}

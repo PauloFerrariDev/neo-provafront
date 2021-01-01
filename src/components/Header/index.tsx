@@ -6,10 +6,10 @@ import "./style.scss";
 
 const Header = () => {
   return (
-    <div className="Header">
-      <img src={charizardImg} alt="Charizard" className="pokemonsLogo" />
-      <img src={pokedexImg} alt="Pokédex" className="pokedexLogo" />
-      <img src={blastoiseImg} alt="Blastoise" className="pokemonsLogo" />
+    <div className="header">
+      <img src={charizardImg} alt="charizard" className="pokemons-logo" />
+      <img src={pokedexImg} alt="pokédex" className="pokedex-logo" />
+      <img src={blastoiseImg} alt="blastoise" className="pokemons-logo" />
     </div>
   );
 };

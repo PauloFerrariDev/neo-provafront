@@ -1,9 +1,9 @@
-@mixin imagesLogo {
+@mixin images-logo {
   max-width: 100%;
   height: auto;
 }
 
-.Header {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,12 +12,12 @@
   padding: 10px 0 0;
   background-color: #222;
 
-  .pokedexLogo {
-    @include imagesLogo;
-    margin: 0 30px;
+  .pokedex-logo {
+    @include images-logo;
+    padding: 0 30px;
   }
 
-  .pokemonsLogo {
-    @include imagesLogo;
+  .pokemons-logo {
+    @include images-logo;
   }
 }

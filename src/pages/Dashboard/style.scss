@@ -1,0 +1,34 @@
+.container {
+  margin: 30px 10% 0;
+  color: #fff;
+
+  p {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .filter,
+    .catch-pokemon {
+      width: 40%;
+    }
+
+    @media (max-width: 789px) {
+      flex-direction: column;
+
+      .filter {
+        margin-bottom: 10px;
+      }
+
+      .filter,
+      .catch-pokemon {
+        width: 100%;
+      }
+    }
+  }
+}

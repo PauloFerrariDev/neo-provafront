@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import { GoSearch } from "react-icons/go";
 
 const Dashboard = () => {
   return (
@@ -7,14 +8,19 @@ const Dashboard = () => {
       <div className="actions">
         <div className="filter">
           <p>Nome ou Número:</p>
-          <input type="search" />
+          <div className="search-field">
+            <input type="text" />
+            <button type="submit">
+              <GoSearch className="search-icon" />
+            </button>
+          </div>
         </div>
 
         <div className="catch-pokemon">
           <p>Capturar Pokémon:</p>
           <select>
-            <option value="pichu">Pichu</option>
-            <option value="pikachu">Pikachu</option>
+            <option value="0">Pichu</option>
+            <option value="1">Pikachu</option>
           </select>
         </div>
       </div>

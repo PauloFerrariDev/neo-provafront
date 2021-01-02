@@ -1,0 +1,12 @@
+@mixin images-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+@mixin default-dimensions {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

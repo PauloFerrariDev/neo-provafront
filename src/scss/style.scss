@@ -1,6 +1,10 @@
+@import "./colors";
+@import "./mixins";
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -14,24 +18,32 @@ body {
 input:focus,
 select:focus,
 textarea:focus,
-button:focus {
+button:focus,
+input:hover,
+select:hover,
+button:hover {
   outline: none;
+  border: 1px solid $blue;
+}
+
+button {
+  @include default-dimensions;
+  cursor: pointer;
 }
 
 input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 10px;
+  @include default-dimensions;
 }
 
 select {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 10px;
+  @include default-dimensions;
+  cursor: pointer;
+
+  // Replace default styling (arrow)
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'><path d='M12 21l-12-18h24z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px top 11px;
 }

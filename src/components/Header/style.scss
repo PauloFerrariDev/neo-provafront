@@ -1,7 +1,4 @@
-@mixin images-logo {
-  max-width: 100%;
-  height: auto;
-}
+@import "src/scss/mixins";
 
 .header {
   display: flex;
@@ -10,7 +7,7 @@
   align-items: center;
   height: 140px;
   padding: 10px 0 0;
-  background-color: #222;
+  background-color: #181818;
 
   .pokedex-logo {
     @include images-logo;
@@ -19,5 +16,12 @@
 
   .pokemons-logo {
     @include images-logo;
+  }
+
+  @media (max-width: 699px) {
+    .pokemons-logo {
+      display: none;
+      visibility: hidden;
+    }
   }
 }

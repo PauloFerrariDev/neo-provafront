@@ -1,11 +1,11 @@
 .container {
-  margin: 40px 10% 0;
+  margin: 40px 12% 4%;
   color: #fff;
+}
 
-  p {
-    margin-bottom: 5px;
-    font-size: 18px;
-  }
+.label {
+  margin-bottom: 5px;
+  font-size: 18px;
 }
 
 .actions {
@@ -13,6 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 40px;
 
   .filter,
   .catch-pokemon {
@@ -57,4 +58,12 @@
     width: 19px;
     height: 19px;
   }
+}
+
+.pokedex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
 }

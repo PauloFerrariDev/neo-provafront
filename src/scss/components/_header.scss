@@ -1,4 +1,6 @@
+@import "src/scss/colors";
 @import "src/scss/mixins";
+@import "src/scss/breakpoints";
 
 .header {
   display: flex;
@@ -7,7 +9,7 @@
   align-items: center;
   height: 140px;
   padding: 10px 0 0;
-  background-color: #181818;
+  background-color: $header-bg-color;
 
   .pokedex-logo {
     @include images-logo;
@@ -18,7 +20,7 @@
     @include images-logo;
   }
 
-  @media (max-width: 699px) {
+  @media (max-width: $sm) {
     .pokemons-logo {
       display: none;
       visibility: hidden;

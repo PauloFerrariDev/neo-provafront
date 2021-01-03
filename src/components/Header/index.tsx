@@ -2,7 +2,6 @@ import React from "react";
 import pokedexImg from "src/assets/pokedex.png";
 import charizardImg from "src/assets/charizard.png";
 import blastoiseImg from "src/assets/blastoise.png";
-import "./style.scss";
 
 const Header = () => {
   return (

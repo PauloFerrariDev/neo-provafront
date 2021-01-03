@@ -5,8 +5,19 @@
 
 @mixin default-dimensions {
   width: 100%;
+  height: 42px;
   font-size: 16px;
   padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+@mixin alert {
+  width: 100%;
+  padding: 15px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 18px;
+  text-align: center;
   border-radius: 4px;
 }

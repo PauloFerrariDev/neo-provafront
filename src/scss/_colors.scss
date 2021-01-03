@@ -5,3 +5,15 @@ $header-bg-color: #181818;
 $body-bg-color: #2f3437;
 $img-border-color: #ccc;
 $img-bg-color: #ddd;
+
+// Alert border colors
+$success-border-color: rgba(148, 214, 163, 1);
+$info-border-color: rgba(157, 214, 224, 1);
+$warning-border-color: rgba(236, 221, 172, 1);
+$danger-border-color: rgba(235, 153, 160, 1);
+
+// Alert background colors
+$success-bg-color: rgba(148, 214, 163, 0.8);
+$info-bg-color: rgba(157, 214, 224, 0.8);
+$warning-bg-color: rgba(236, 221, 172, 0.8);
+$danger-bg-color: rgba(235, 153, 160, 0.8);

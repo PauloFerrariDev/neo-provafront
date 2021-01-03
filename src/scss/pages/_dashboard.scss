@@ -1,5 +1,5 @@
 .container {
-  margin: 40px 12% 4%;
+  margin: 40px 15% 4%;
   color: #fff;
 }
 
@@ -14,6 +14,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 40px;
+  letter-spacing: 1px;
 
   .filter,
   .catch-pokemon {
@@ -37,26 +38,11 @@
 .search-field {
   input {
     float: left;
-    width: 80%;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  button {
-    float: left;
-    width: 20%;
-    border-radius: 0;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    background-color: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .search-icon {
-    width: 19px;
-    height: 19px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAi1JREFUWIXtlr1uE0EURs/dIsYiDqXdpiUFBa1pE4iIgDeIKFNgXFEnT0CFjIjyCjQgo3QEFxESRVASSCjyAKSxpRiE5AzF3kVXE3Z3dr2m4pNWnvXOd++Z/4F0RcAy0AMOgJGITICRvvf0e5QRo7TWgGMRcXkPcKz1S0m89znghYg8Tr45534AA+AIGAI3gCWgLSJ19Tnn3A6wAfwqCzMH9E3LzoEu0Eip3wCeAufG09c4pbRtAg2AVqCvBQyMd7tM8jURuTTJ63kGT3UDcUnBOSHohCPu9tCW+2qhwwF8ocDqWDbd1y2ZPFHXxFoJNfXUMCZ9woWqAYw13stQ04EadqdMnmhX430OqRwBi1o+qgggibOYWSsBEJHrWh5WBDAEEJH5IADn3IWWFyoCWAAwcbMBgDMtL1UEkMQ5y6xlAPa13KaaVdDW8n5WRasVs3Y7UwJ0TKx7oaYI+FrBTtgEvmucEwreEx4Y8j2KnwXXgD0T42FBPwA7HkQz0NcE3hvvxzLJAWroLmaGowOkred54Ana7d4taTM0qX8jqhGfDevJH865MfCBeIcbEa/zm8Ads4nhnPskIrfN+xbwGrgLPAd+hkJBPIYngXfCU+CR+ra8bxP9fUc8TwopAlaBV8AhcGFOzUPim88qV2f7ZgpoKQhf/pD9TbfQls8KIk/PcoZs5hA14O1/iECI/iwBciGAb7MGSIUAJsD9fwFwBUKTT3v0l4J4Q9ztf1r+G6eN6nN/9ORtAAAAAElFTkSuQmCC);
+    background-position: top 10px right 10px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    padding: 10px 40px 10px 20px;
   }
 }
 

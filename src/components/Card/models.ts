@@ -1,3 +1,6 @@
 export interface CardProps {
-  pokemon: any;
+  title: string;
+  text: string;
+  imageURL: string | null;
+  badges?: any[];
 }

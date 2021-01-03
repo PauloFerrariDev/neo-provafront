@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { GoSearch } from "react-icons/go";
 import { getPokemons } from "src/services";
 import Loading from "src/components/Loading";
 import Card from "src/components/Card";
+import Alert from "src/components/Alert";
 
 const Dashboard = () => {
   const [pokemons, setPokemons] = useState<any[]>([]);
   const [pokedex, setPokedex] = useState<any[]>([]);
   const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
     fetchPokemons();
@@ -46,6 +47,26 @@ const Dashboard = () => {
     }
   };
 
+  const handlePokemonNumber = (id: number) => {
+    if (id < 10) {
+      return `Nº 00${id}`;
+    }
+
+    if (id < 100) {
+      return `Nº 0${id}`;
+    }
+
+    return `Nº ${id}`;
+  };
+
+  const handleOnSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    const value = String(event.target.value).toLowerCase();
+
+    setSearchValue(value);
+  };
+
   return (
     <div className="container">
       {loadingPokemons ? (
@@ -54,19 +75,22 @@ const Dashboard = () => {
         <>
           <div className="actions">
             <div className="filter">
-              <p className="label">Nome ou Número:</p>
+              <p className="label">Nome ou Número</p>
               <div className="search-field">
-                <input type="search" />
-                <button type="submit">
-                  <GoSearch className="search-icon" />
-                </button>
+                <input
+                  type="search"
+                  onChange={handleOnSearch}
+                  placeholder="Buscar..."
+                />
               </div>
             </div>
 
             <div className="catch-pokemon">
-              <p className="label">Capturar Pokémon:</p>
+              <p className="label">Capturar Pokémon</p>
               <select onChange={onChangeCatchPokemon}>
-                <option disabled selected />
+                <option disabled selected>
+                  Selecione
+                </option>
                 {pokemons.map((pokemon) => (
                   <option key={pokemon.id} value={pokemon.id}>
                     {String(pokemon.name).toLocaleUpperCase()}
@@ -76,11 +100,28 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="pokedex-container">
-            {pokedex.map((pokemon: any) => (
-              <Card pokemon={pokemon} />
-            ))}
-          </div>
+          {pokedex.length > 0 ? (
+            <div className="pokedex-container">
+              {pokedex.map((pokemon: any) => {
+                if (
+                  pokemon.name.includes(searchValue) ||
+                  pokemon.id === parseInt(searchValue)
+                ) {
+                  return (
+                    <Card
+                      title={handlePokemonNumber(pokemon.id)}
+                      text={String(pokemon.name).toLocaleUpperCase()}
+                      imageURL={pokemon.sprite}
+                    />
+                  );
+                }
+
+                return null;
+              })}
+            </div>
+          ) : (
+            <Alert role="danger" text="Nenhum Pokémon foi capturado ainda!" />
+          )}
         </>
       )}
     </div>

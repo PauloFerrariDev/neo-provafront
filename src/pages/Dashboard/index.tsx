@@ -69,7 +69,7 @@ const Dashboard = () => {
   const handleOnSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
 
-    const value = String(event.target.value).toLowerCase();
+    const value = String(event.target.value).toLowerCase().trim();
 
     setSearchValue(value);
   };
@@ -105,6 +105,7 @@ const Dashboard = () => {
     setLoadingPokemons(true);
 
     setTimeout(() => {
+      setSearchValue("");
       setPokemonsByType([]);
       setFilteredType(null);
       setLoadingPokemons(false);
@@ -145,6 +146,7 @@ const Dashboard = () => {
               <div className="search-field">
                 <input
                   type="search"
+                  value={searchValue}
                   onChange={handleOnSearch}
                   placeholder="Buscar..."
                 />
@@ -169,7 +171,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {filteredType && (
+          {filteredType ? (
             <div className="info-type-container">
               <div className="back-container">
                 <div className="back" onClick={backToPokedex}>
@@ -181,6 +183,13 @@ const Dashboard = () => {
               <div className="info-type">
                 <span>Pokémons do Tipo:</span>
                 <Badge type={filteredType} />
+              </div>
+            </div>
+          ) : (
+            <div className="pokedex-title">
+              Minha Pokédex
+              <div className="pokedex-subtitle">
+                Capturados: {pokedex.length} / {pokemons.length}
               </div>
             </div>
           )}

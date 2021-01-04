@@ -46,6 +46,19 @@
   }
 }
 
+.pokedex-title {
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+
+  .pokedex-subtitle {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
+
 .pokedex-container {
   display: flex;
   flex-flow: row wrap;

@@ -1,0 +1,48 @@
+@import "src/scss/colors";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $body-bg-color;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+input:hover,
+select:hover,
+button:hover {
+  outline: none;
+  border: 3px solid $blue;
+}
+
+button {
+  @include default-dimensions;
+  cursor: pointer;
+}
+
+input {
+  @include default-dimensions;
+}
+
+select {
+  @include default-dimensions;
+  cursor: pointer;
+
+  // Replace default styling (arrow)
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'><path d='M12 21l-12-18h24z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px top 11px;
+}

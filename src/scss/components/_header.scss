@@ -1,0 +1,29 @@
+@import "src/scss/colors";
+@import "src/scss/mixins";
+@import "src/scss/breakpoints";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+  padding: 15px 0;
+  background-color: $header-bg-color;
+
+  .pokedex-logo {
+    @include images-logo;
+    padding: 0 30px;
+  }
+
+  .pokemons-logo {
+    @include images-logo;
+  }
+
+  @media (max-width: $sm) {
+    .pokemons-logo {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}

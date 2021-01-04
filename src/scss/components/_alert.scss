@@ -1,0 +1,26 @@
+@import "src/scss/colors";
+@import "src/scss/mixins";
+
+.alert-success {
+  @include alert;
+  border: 1px solid $success-border-color;
+  background-color: $success-bg-color;
+}
+
+.alert-info {
+  @include alert;
+  border: 1px solid $info-border-color;
+  background-color: $info-bg-color;
+}
+
+.alert-warning {
+  @include alert;
+  border: 1px solid $warning-border-color;
+  background-color: $warning-bg-color;
+}
+
+.alert-danger {
+  @include alert;
+  border: 1px solid $danger-border-color;
+  background-color: $danger-bg-color;
+}

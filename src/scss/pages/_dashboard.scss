@@ -53,3 +53,40 @@
   width: 100%;
   height: auto;
 }
+
+.info-type-container {
+  margin-bottom: 20px;
+
+  .back-container {
+    display: inline-block;
+
+    .back {
+      display: flex;
+      align-items: center;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      .back-icon {
+        font-size: 18px;
+        margin: 0 3px 3px 0;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .info-type {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-top: 10px;
+
+    span {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+  }
+}

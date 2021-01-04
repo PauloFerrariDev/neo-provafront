@@ -9,11 +9,11 @@
   color: $blue;
   font-size: 40px;
 
-  -webkit-animation: rotating 1.2s linear infinite;
-  -moz-animation: rotating 1.2s linear infinite;
-  -ms-animation: rotating 1.2s linear infinite;
-  -o-animation: rotating 1.2s linear infinite;
-  animation: rotating 1.2s linear infinite;
+  -webkit-animation: rotating 0.8s linear infinite;
+  -moz-animation: rotating 0.8s linear infinite;
+  -ms-animation: rotating 0.8s linear infinite;
+  -o-animation: rotating 0.8s linear infinite;
+  animation: rotating 0.8s linear infinite;
 }
 
 @keyframes rotating {

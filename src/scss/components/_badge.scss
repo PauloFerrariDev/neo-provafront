@@ -1,0 +1,201 @@
+@import "src/scss/colors";
+@import "src/scss/mixins";
+
+.badge-normal {
+  @include badge;
+  background-color: $normal;
+}
+
+.badge-grass {
+  @include badge;
+  background-color: $grass;
+}
+
+.badge-fire {
+  @include badge;
+  background-color: $fire;
+}
+
+.badge-water {
+  @include badge;
+  background-color: $water;
+}
+
+.badge-fighting {
+  @include badge;
+  background-color: $fighting;
+}
+
+.badge-flying {
+  @include badge;
+  background-color: $flying;
+}
+
+.badge-poison {
+  @include badge;
+  background-color: $poison;
+}
+
+.badge-ground {
+  @include badge;
+  background-color: $ground;
+}
+
+.badge-rock {
+  @include badge;
+  background-color: $rock;
+}
+
+.badge-bug {
+  @include badge;
+  background-color: $bug;
+}
+
+.badge-ghost {
+  @include badge;
+  background-color: $ghost;
+}
+
+.badge-electric {
+  @include badge;
+  background-color: $electric;
+}
+
+.badge-psychic {
+  @include badge;
+  background-color: $psychic;
+}
+
+.badge-ice {
+  @include badge;
+  background-color: $ice;
+}
+
+.badge-dragon {
+  @include badge;
+  background-color: $dragon;
+}
+
+.badge-dark {
+  @include badge;
+  background-color: $dark;
+}
+
+.badge-steel {
+  @include badge;
+  background-color: $steel;
+}
+
+.badge-fairy {
+  @include badge;
+  background-color: $fairy;
+}
+
+.badge-normal-clickable {
+  @include badge;
+  background-color: $normal;
+  cursor: pointer;
+}
+
+// badge clickable
+.badge-grass-clickable {
+  @include badge;
+  background-color: $grass;
+  cursor: pointer;
+}
+
+.badge-fire-clickable {
+  @include badge;
+  background-color: $fire;
+  cursor: pointer;
+}
+
+.badge-water-clickable {
+  @include badge;
+  background-color: $water;
+  cursor: pointer;
+}
+
+.badge-fighting-clickable {
+  @include badge;
+  background-color: $fighting;
+  cursor: pointer;
+}
+
+.badge-flying-clickable {
+  @include badge;
+  background-color: $flying;
+  cursor: pointer;
+}
+
+.badge-poison-clickable {
+  @include badge;
+  background-color: $poison;
+  cursor: pointer;
+}
+
+.badge-ground-clickable {
+  @include badge;
+  background-color: $ground;
+  cursor: pointer;
+}
+
+.badge-rock-clickable {
+  @include badge;
+  background-color: $rock;
+  cursor: pointer;
+}
+
+.badge-bug-clickable {
+  @include badge;
+  background-color: $bug;
+  cursor: pointer;
+}
+
+.badge-ghost-clickable {
+  @include badge;
+  background-color: $ghost;
+  cursor: pointer;
+}
+
+.badge-electric-clickable {
+  @include badge;
+  background-color: $electric;
+  cursor: pointer;
+}
+
+.badge-psychic-clickable {
+  @include badge;
+  background-color: $psychic;
+  cursor: pointer;
+}
+
+.badge-ice-clickable {
+  @include badge;
+  background-color: $ice;
+  cursor: pointer;
+}
+
+.badge-dragon-clickable {
+  @include badge;
+  background-color: $dragon;
+  cursor: pointer;
+}
+
+.badge-dark-clickable {
+  @include badge;
+  background-color: $dark;
+  cursor: pointer;
+}
+
+.badge-steel-clickable {
+  @include badge;
+  background-color: $steel;
+  cursor: pointer;
+}
+
+.badge-fairy-clickable {
+  @include badge;
+  background-color: $fairy;
+  cursor: pointer;
+}

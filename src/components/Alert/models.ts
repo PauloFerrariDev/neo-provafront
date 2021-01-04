@@ -1,6 +1,6 @@
-type Role = "success" | "info" | "warning" | "danger";
+import { Roles } from "src/models";
 
 export interface AlertProps {
-  role: Role;
+  role: Roles;
   text: string;
 }

@@ -3,12 +3,19 @@ import { getPokemons } from "src/services";
 import Loading from "src/components/Loading";
 import Card from "src/components/Card";
 import Alert from "src/components/Alert";
+import Badge from "src/components/Badge";
+import { PokemonTypes } from "src/models";
+import { IoArrowBack } from "react-icons/io5";
 
 const Dashboard = () => {
-  const [pokemons, setPokemons] = useState<any[]>([]);
-  const [pokedex, setPokedex] = useState<any[]>([]);
-  const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [filteredType, setFilteredType] = useState<PokemonTypes | null>(null);
+  const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
+  const [pokemons, setPokemons] = useState<Array<any | undefined>>([]);
+  const [pokedex, setPokedex] = useState<Array<any | undefined>>([]);
+  const [pokemonsByType, setPokemonsByType] = useState<Array<any | undefined>>(
+    []
+  );
 
   useEffect(() => {
     fetchPokemons();
@@ -32,12 +39,12 @@ const Dashboard = () => {
   };
 
   const addPokemonToPokedex = (id: number) => {
-    const pokemon = pokemons.find((pokemon) => pokemon.id === id);
+    const newPokemon = pokemons.find((pokemon) => pokemon && pokemon.id === id);
 
-    if (pokemon) {
+    if (newPokemon) {
       const pokedexTemp = pokedex;
 
-      pokedexTemp.push(pokemon);
+      pokedexTemp.push(newPokemon);
 
       pokedexTemp.sort((a: any, b: any) => a.id - b.id);
 
@@ -67,6 +74,65 @@ const Dashboard = () => {
     setSearchValue(value);
   };
 
+  const handleOnClickPokemonType = (type: PokemonTypes) => {
+    setLoadingPokemons(true);
+
+    const pokemonsFiltered = filterPokemonsByType(type);
+
+    setTimeout(() => {
+      setFilteredType(type);
+      setPokemonsByType(pokemonsFiltered);
+      setLoadingPokemons(false);
+    }, 300);
+  };
+
+  const filterPokemonsByType = (type: string): Array<any> => {
+    const pokemonsFiltered: any[] = [];
+
+    for (const pokemon of pokemons) {
+      pokemon &&
+        pokemon.types.forEach((typeData: any) => {
+          if (typeData.type.name === type) {
+            pokemonsFiltered.push(pokemon);
+          }
+        });
+    }
+
+    return pokemonsFiltered;
+  };
+
+  const backToPokedex = () => {
+    setLoadingPokemons(true);
+
+    setTimeout(() => {
+      setPokemonsByType([]);
+      setFilteredType(null);
+      setLoadingPokemons(false);
+    }, 300);
+  };
+
+  const renderPokemonCards = (pokemonsData: any[]) => {
+    return pokemonsData.map(
+      (pokemon: any | undefined) =>
+        pokemon &&
+        (pokemon.name.includes(searchValue) ||
+          pokemon.id === parseInt(searchValue)) && (
+          <Card
+            title={handlePokemonNumber(pokemon.id)}
+            text={String(pokemon.name).toLocaleUpperCase()}
+            imageURL={pokemon.sprite}
+            badges={pokemon.types.map((typeData: any) => (
+              <Badge
+                type={typeData.type.name}
+                clickable
+                onClick={handleOnClickPokemonType}
+              />
+            ))}
+          />
+        )
+    );
+  };
+
   return (
     <div className="container">
       {loadingPokemons ? (
@@ -91,33 +157,39 @@ const Dashboard = () => {
                 <option disabled selected>
                   Selecione
                 </option>
-                {pokemons.map((pokemon) => (
-                  <option key={pokemon.id} value={pokemon.id}>
-                    {String(pokemon.name).toLocaleUpperCase()}
-                  </option>
-                ))}
+                {pokemons.map(
+                  (pokemon: any | undefined) =>
+                    pokemon && (
+                      <option key={pokemon.id} value={pokemon.id}>
+                        {String(pokemon.name).toLocaleUpperCase()}
+                      </option>
+                    )
+                )}
               </select>
             </div>
           </div>
 
+          {filteredType && (
+            <div className="info-type-container">
+              <div className="back-container">
+                <div className="back" onClick={backToPokedex}>
+                  <IoArrowBack className="back-icon" />
+                  <span>Minha Pokédex</span>
+                </div>
+              </div>
+
+              <div className="info-type">
+                <span>Pokémons do Tipo:</span>
+                <Badge type={filteredType} />
+              </div>
+            </div>
+          )}
+
           {pokedex.length > 0 ? (
             <div className="pokedex-container">
-              {pokedex.map((pokemon: any) => {
-                if (
-                  pokemon.name.includes(searchValue) ||
-                  pokemon.id === parseInt(searchValue)
-                ) {
-                  return (
-                    <Card
-                      title={handlePokemonNumber(pokemon.id)}
-                      text={String(pokemon.name).toLocaleUpperCase()}
-                      imageURL={pokemon.sprite}
-                    />
-                  );
-                }
-
-                return null;
-              })}
+              {renderPokemonCards(
+                pokemonsByType.length ? pokemonsByType : pokedex
+              )}
             </div>
           ) : (
             <Alert role="danger" text="Nenhum Pokémon foi capturado ainda!" />

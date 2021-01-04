@@ -1,0 +1,102 @@
+.pokedex-container {
+  .label {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+
+    .filter,
+    .catch-pokemon {
+      width: 40%;
+    }
+
+    @media (max-width: 789px) {
+      flex-direction: column;
+
+      .filter {
+        margin-bottom: 16px;
+      }
+
+      .filter,
+      .catch-pokemon {
+        width: 100%;
+      }
+    }
+  }
+
+  .search-field {
+    input {
+      float: left;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAi1JREFUWIXtlr1uE0EURs/dIsYiDqXdpiUFBa1pE4iIgDeIKFNgXFEnT0CFjIjyCjQgo3QEFxESRVASSCjyAKSxpRiE5AzF3kVXE3Z3dr2m4pNWnvXOd++Z/4F0RcAy0AMOgJGITICRvvf0e5QRo7TWgGMRcXkPcKz1S0m89znghYg8Tr45534AA+AIGAI3gCWgLSJ19Tnn3A6wAfwqCzMH9E3LzoEu0Eip3wCeAufG09c4pbRtAg2AVqCvBQyMd7tM8jURuTTJ63kGT3UDcUnBOSHohCPu9tCW+2qhwwF8ocDqWDbd1y2ZPFHXxFoJNfXUMCZ9woWqAYw13stQ04EadqdMnmhX430OqRwBi1o+qgggibOYWSsBEJHrWh5WBDAEEJH5IADn3IWWFyoCWAAwcbMBgDMtL1UEkMQ5y6xlAPa13KaaVdDW8n5WRasVs3Y7UwJ0TKx7oaYI+FrBTtgEvmucEwreEx4Y8j2KnwXXgD0T42FBPwA7HkQz0NcE3hvvxzLJAWroLmaGowOkred54Ana7d4taTM0qX8jqhGfDevJH865MfCBeIcbEa/zm8Ads4nhnPskIrfN+xbwGrgLPAd+hkJBPIYngXfCU+CR+ra8bxP9fUc8TwopAlaBV8AhcGFOzUPim88qV2f7ZgpoKQhf/pD9TbfQls8KIk/PcoZs5hA14O1/iECI/iwBciGAb7MGSIUAJsD9fwFwBUKTT3v0l4J4Q9ztf1r+G6eN6nN/9ORtAAAAAElFTkSuQmCC);
+      background-position: top 10px right 10px;
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      padding: 10px 40px 10px 20px;
+    }
+  }
+
+  .pokedex-title {
+    display: flex;
+    flex-flow: column wrap;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+
+    .pokedex-subtitle {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+  }
+
+  .pokedex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+  }
+
+  .info-type-container {
+    margin-bottom: 20px;
+
+    .back-container {
+      display: inline-block;
+
+      .back {
+        display: flex;
+        align-items: center;
+        letter-spacing: 1px;
+        border-radius: 4px;
+        cursor: pointer;
+
+        .back-icon {
+          font-size: 18px;
+          margin: 0 3px 3px 0;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .info-type {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      margin-top: 10px;
+
+      span {
+        font-size: 18px;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

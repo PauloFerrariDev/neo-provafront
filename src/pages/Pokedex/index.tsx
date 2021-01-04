@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPokemons } from "src/services";
+import { getPokemons } from "src/services/index.service";
 import Loading from "src/components/Loading";
 import Card from "src/components/Card";
 import Alert from "src/components/Alert";
@@ -7,7 +7,7 @@ import Badge from "src/components/Badge";
 import { PokemonTypes } from "src/models";
 import { IoArrowBack } from "react-icons/io5";
 
-const Dashboard = () => {
+const Pokedex = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filteredType, setFilteredType] = useState<PokemonTypes | null>(null);
   const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
@@ -135,7 +135,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container">
+    <div className="pokedex-container">
       {loadingPokemons ? (
         <Loading />
       ) : (
@@ -209,4 +209,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Pokedex;

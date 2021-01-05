@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertProps } from "./models";
+import { AlertProps } from "./types";
 
 const Alert: React.FC<AlertProps> = ({ role, text }) => {
   return <div className={`alert-${role}`}>{text}</div>;

@@ -1,5 +1,5 @@
-import pokeApi from "src/api";
-import { totalPokemons } from "src/models";
+import pokeApi from "src/services/api";
+import { totalPokemons } from "src/types";
 
 export const getPokemons = async (): Promise<Array<any | undefined>> => {
   const promises: Array<any | undefined> = [];

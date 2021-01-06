@@ -6,24 +6,32 @@ export interface Pagination {
   previous: string | null;
 }
 
-export type Roles = "success" | "info" | "warning" | "danger";
+export type Roles = "danger" | "info" | "success" | "warning";
 
 export type PokemonTypes =
-  | "normal"
-  | "grass"
+  | "bug"
+  | "dark"
+  | "dragon"
+  | "electric"
+  | "fairy"
   | "fire"
-  | "water"
   | "fighting"
   | "flying"
-  | "poison"
-  | "ground"
-  | "rock"
-  | "bug"
   | "ghost"
-  | "electric"
-  | "psychic"
+  | "grass"
+  | "ground"
   | "ice"
-  | "dragon"
-  | "dark"
+  | "normal"
+  | "poison"
+  | "psychic"
+  | "rock"
   | "steel"
-  | "fairy";
+  | "water";
+
+export enum PokemonWithoutImage {
+  CALYREX = "calyrex",
+  GLASTRIER = "glastrier",
+  REGIDRAGO = "regidrago",
+  REGIELEKI = "regieleki",
+  SPECTRIER = "spectrier",
+}

@@ -3,7 +3,7 @@ import pokedexImg from "src/assets/pokedex.png";
 import charizardImg from "src/assets/charizard.png";
 import blastoiseImg from "src/assets/blastoise.png";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <div className="header">
       <img src={charizardImg} alt="charizard" className="pokemons-logo" />

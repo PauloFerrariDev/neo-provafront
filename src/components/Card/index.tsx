@@ -1,5 +1,6 @@
 import React from "react";
 import { CardProps } from "./types";
+
 import noImageAvailable from "src/assets/no-image-available.png";
 
 const Card: React.FC<CardProps> = ({ title, text, imageURL, badges }) => {

@@ -1,60 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { IoArrowBack } from "react-icons/io5";
 import { getPokemons } from "src/services/index.service";
-import Loading from "src/components/Loading";
-import Card from "src/components/Card";
+
 import Alert from "src/components/Alert";
 import Badge from "src/components/Badge";
-import { PokemonTypes } from "src/types";
-import { IoArrowBack } from "react-icons/io5";
+import Card from "src/components/Card";
+import Loading from "src/components/Loading";
 
-const Pokedex = () => {
+import { ApplicationState } from "src/store";
+import { PokemonTypes, PokemonWithoutImage } from "src/types";
+import { Pokemon } from "src/store/modules/pokemon/types";
+import {
+  setPokemonList,
+  pokemonWasCatched,
+} from "src/store/modules/pokemon/actions";
+import { addPokemon } from "src/store/modules/pokedex/actions";
+
+import calyrex from "src/assets/calyrex.png";
+import glastrier from "src/assets/glastrier.png";
+import regieleki from "src/assets/regieleki.png";
+import regidrago from "src/assets/regidrago.png";
+import spectrier from "src/assets/spectrier.png";
+
+const Pokedex: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const pokemons = useSelector<ApplicationState, Pokemon[]>(
+    (state) => state.pokemon.list
+  );
+
+  const pokedex = useSelector<ApplicationState, Pokemon[]>(
+    (state) => state.pokedex.pokemons
+  );
+
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filteredType, setFilteredType] = useState<PokemonTypes | null>(null);
   const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
-  const [pokemons, setPokemons] = useState<Array<any | undefined>>([]);
-  const [pokedex, setPokedex] = useState<Array<any | undefined>>([]);
+  const [filteredType, setFilteredType] = useState<PokemonTypes | null>(null);
   const [pokemonsByType, setPokemonsByType] = useState<Array<any | undefined>>(
     []
   );
 
+  const fetchPokemons = useCallback(async () => {
+    const pokemonsData = await getPokemons();
+    dispatch(setPokemonList(pokemonsData));
+    setLoadingPokemons(false);
+  }, [dispatch]);
+
   useEffect(() => {
     fetchPokemons();
-  }, []);
-
-  const fetchPokemons = async () => {
-    const pokemons = await getPokemons();
-    setPokemons(pokemons);
-    setLoadingPokemons(false);
-  };
+  }, [fetchPokemons]);
 
   const onChangeCatchPokemon = (
     event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const id: number = Number(event.target.value);
-    console.log("id", id);
+  ): void => {
+    const id = Number(event.target.value);
 
-    if (!pokedex.find((pokemon: any) => pokemon.id === id)) {
+    if (!pokedex.find((pokemon: Pokemon) => pokemon.id === id)) {
       addPokemonToPokedex(id);
     }
   };
 
-  const addPokemonToPokedex = (id: number) => {
-    const newPokemon = pokemons.find((pokemon) => pokemon && pokemon.id === id);
+  const addPokemonToPokedex = (id: number): void => {
+    const newPokemon = pokemons.find((pokemon) => pokemon.id === id);
 
     if (newPokemon) {
-      const pokedexTemp = pokedex;
-
-      pokedexTemp.push(newPokemon);
-
-      pokedexTemp.sort((a: any, b: any) => a.id - b.id);
-
-      console.log("pokedexTemp", pokedexTemp);
-
-      setPokedex([...pokedexTemp]);
+      dispatch(pokemonWasCatched(id));
+      dispatch(addPokemon(newPokemon));
     }
   };
 
-  const handlePokemonNumber = (id: number) => {
+  const handlePokemonNumber = (id: number): string => {
     if (id < 10) {
       return `Nº 00${id}`;
     }
@@ -66,7 +82,7 @@ const Pokedex = () => {
     return `Nº ${id}`;
   };
 
-  const handleOnSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
 
     const value = String(event.target.value).toLocaleUpperCase().trim();
@@ -74,7 +90,7 @@ const Pokedex = () => {
     setSearchValue(value);
   };
 
-  const handleOnClickPokemonType = (type: PokemonTypes) => {
+  const handleOnClickPokemonType = (type: PokemonTypes): void => {
     setLoadingPokemons(true);
 
     const pokemonsFiltered = filterPokemonsByType(type);
@@ -87,22 +103,21 @@ const Pokedex = () => {
     }, 300);
   };
 
-  const filterPokemonsByType = (type: string): Array<any> => {
-    const pokemonsFiltered: any[] = [];
+  const filterPokemonsByType = (type: string): Pokemon[] => {
+    const pokemonsFiltered: Pokemon[] = [];
 
     for (const pokemon of pokemons) {
-      pokemon &&
-        pokemon.types.forEach((typeData: any) => {
-          if (typeData.type.name === type) {
-            pokemonsFiltered.push(pokemon);
-          }
-        });
+      pokemon.types.forEach((typeData) => {
+        if (typeData.type.name === type) {
+          pokemonsFiltered.push(pokemon);
+        }
+      });
     }
 
     return pokemonsFiltered;
   };
 
-  const backToPokedex = () => {
+  const backToPokedex = (): void => {
     setLoadingPokemons(true);
 
     setTimeout(() => {
@@ -113,18 +128,45 @@ const Pokedex = () => {
     }, 300);
   };
 
-  const renderPokemonCards = (pokemonsData: any[]) => {
+  const handleImageUrl = (
+    name: string,
+    imageURL: string | null
+  ): string | null => {
+    switch (name) {
+      case PokemonWithoutImage.CALYREX: {
+        return calyrex;
+      }
+      case PokemonWithoutImage.GLASTRIER: {
+        return glastrier;
+      }
+      case PokemonWithoutImage.REGIELEKI: {
+        return regieleki;
+      }
+      case PokemonWithoutImage.REGIDRAGO: {
+        return regidrago;
+      }
+      case PokemonWithoutImage.SPECTRIER: {
+        return spectrier;
+      }
+      default: {
+        return imageURL;
+      }
+    }
+  };
+
+  const renderPokemonCards = (
+    pokemonsData: Pokemon[]
+  ): (false | JSX.Element)[] => {
     return pokemonsData.map(
-      (pokemon: any | undefined) =>
-        pokemon &&
+      (pokemon) =>
         (pokemon.name.includes(searchValue.toLocaleLowerCase()) ||
           pokemon.id === parseInt(searchValue)) && (
           <Card
             key={pokemon.id}
             title={handlePokemonNumber(pokemon.id)}
-            text={String(pokemon.name).toLocaleUpperCase()}
-            imageURL={pokemon.sprite}
-            badges={pokemon.types.map((typeData: any) => (
+            text={pokemon.name.toLocaleUpperCase()}
+            imageURL={handleImageUrl(pokemon.name, pokemon.sprite)}
+            badges={pokemon.types.map((typeData) => (
               <Badge
                 key={typeData.type.name}
                 type={typeData.type.name}
@@ -156,22 +198,25 @@ const Pokedex = () => {
               </div>
             </div>
 
-            <div className="catch-pokemon">
-              <p className="label">Capturar Pokémon</p>
-              <select onChange={onChangeCatchPokemon} defaultValue="selecione">
-                <option disabled value="selecione">
-                  Selecione
-                </option>
-                {pokemons.map(
-                  (pokemon: any | undefined) =>
-                    pokemon && (
-                      <option key={pokemon.id} value={pokemon.id}>
-                        {String(pokemon.name).toLocaleUpperCase()}
-                      </option>
-                    )
-                )}
-              </select>
-            </div>
+            {!filteredType && (
+              <div className="catch-pokemon">
+                <p className="label">Capturar Pokémon</p>
+                <select
+                  onChange={onChangeCatchPokemon}
+                  defaultValue="selecione"
+                >
+                  <option disabled value="selecione">
+                    Selecione
+                  </option>
+                  {pokemons.map((pokemon) => (
+                    <option key={pokemon.id} value={pokemon.id}>
+                      {pokemon.name.toLocaleUpperCase()}
+                      {pokemon.was_catched && " - (capturado)"}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
           {filteredType ? (

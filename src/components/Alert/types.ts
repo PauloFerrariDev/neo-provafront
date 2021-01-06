@@ -1,4 +1,4 @@
-import { Roles } from "src/models";
+import { Roles } from "src/types";
 
 export interface AlertProps {
   role: Roles;

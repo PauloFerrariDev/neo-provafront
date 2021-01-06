@@ -1,4 +1,4 @@
-import { PokemonTypes } from "src/models";
+import { PokemonTypes } from "src/types";
 
 export interface BadgeProps {
   type: PokemonTypes;

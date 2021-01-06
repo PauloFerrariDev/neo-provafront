@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getPokemons } from "src/services";
+import { getPokemons } from "src/services/index.service";
 import Loading from "src/components/Loading";
 import Card from "src/components/Card";
 import Alert from "src/components/Alert";
 import Badge from "src/components/Badge";
-import { PokemonTypes } from "src/models";
+import { PokemonTypes } from "src/types";
 import { IoArrowBack } from "react-icons/io5";
 
-const Dashboard = () => {
+const Pokedex = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filteredType, setFilteredType] = useState<PokemonTypes | null>(null);
   const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
@@ -69,7 +69,7 @@ const Dashboard = () => {
   const handleOnSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
 
-    const value = String(event.target.value).toLowerCase().trim();
+    const value = String(event.target.value).toLocaleUpperCase().trim();
 
     setSearchValue(value);
   };
@@ -80,6 +80,7 @@ const Dashboard = () => {
     const pokemonsFiltered = filterPokemonsByType(type);
 
     setTimeout(() => {
+      setSearchValue("");
       setFilteredType(type);
       setPokemonsByType(pokemonsFiltered);
       setLoadingPokemons(false);
@@ -116,14 +117,16 @@ const Dashboard = () => {
     return pokemonsData.map(
       (pokemon: any | undefined) =>
         pokemon &&
-        (pokemon.name.includes(searchValue) ||
+        (pokemon.name.includes(searchValue.toLocaleLowerCase()) ||
           pokemon.id === parseInt(searchValue)) && (
           <Card
+            key={pokemon.id}
             title={handlePokemonNumber(pokemon.id)}
             text={String(pokemon.name).toLocaleUpperCase()}
             imageURL={pokemon.sprite}
             badges={pokemon.types.map((typeData: any) => (
               <Badge
+                key={typeData.type.name}
                 type={typeData.type.name}
                 clickable
                 onClick={handleOnClickPokemonType}
@@ -135,7 +138,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container">
+    <div className="pokedex-container">
       {loadingPokemons ? (
         <Loading />
       ) : (
@@ -155,8 +158,8 @@ const Dashboard = () => {
 
             <div className="catch-pokemon">
               <p className="label">Capturar Pokémon</p>
-              <select onChange={onChangeCatchPokemon}>
-                <option disabled selected>
+              <select onChange={onChangeCatchPokemon} defaultValue="selecione">
+                <option disabled value="selecione">
                   Selecione
                 </option>
                 {pokemons.map(
@@ -209,4 +212,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Pokedex;

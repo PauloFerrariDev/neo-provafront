@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "src/components/Header";
-import Dashboard from "src/pages/Dashboard";
+import Home from "src/pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Dashboard />
+      <Home />
     </div>
   );
 }

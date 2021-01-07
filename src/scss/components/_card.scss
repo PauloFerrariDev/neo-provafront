@@ -18,7 +18,7 @@
   }
 }
 
-.card-image {
+.card-image-container {
   width: 100%;
   height: auto;
   max-height: 275px;
@@ -68,6 +68,20 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+  }
+
+  .delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    .delete-button-icon {
+      color: $red;
+      font-size: 40px;
+      cursor: pointer;
+      padding: 5px 5px 0px;
+    }
   }
 }
 

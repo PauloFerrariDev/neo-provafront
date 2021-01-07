@@ -41,6 +41,9 @@ export interface Pokemon {
 
 export interface PokemonState {
   list: Pokemon[];
+  loading: boolean;
+  selectInputValue: number;
+  pokemon_selected: Pokemon | null;
 }
 
 export interface Action {
@@ -50,10 +53,15 @@ export interface Action {
 
 export enum ActionType {
   SET_POKEMON_LIST = "SET_POKEMON_LIST",
+  SET_POKEMON_SELECTED = "SET_POKEMON_SELECTED",
+  RESET_POKEMON_SELECTED = "RESET_POKEMON_SELECTED",
   POKEMON_WAS_CATCHED = "POKEMON_WAS_CATCHED",
+  POKEMON_WAS_RELEASED = "POKEMON_WAS_RELEASED",
 }
 
 export interface Payload {
   id: number;
+  loading: boolean;
   pokemons: Pokemon[];
+  selectInputValue: number;
 }

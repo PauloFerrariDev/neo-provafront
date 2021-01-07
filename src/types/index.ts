@@ -6,6 +6,21 @@ export interface Pagination {
   previous: string | null;
 }
 
+export interface AbilityData {
+  flavor_text_entries: {
+    flavor_text: string;
+  }[];
+}
+
+export interface EvolutionChainData {
+  chain: Chain | null;
+}
+
+export interface Chain {
+  evolves_to: Chain[];
+  species: { name: string };
+}
+
 export type Roles = "danger" | "info" | "success" | "warning";
 
 export type PokemonTypes =

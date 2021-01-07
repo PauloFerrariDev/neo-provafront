@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IoArrowBack } from "react-icons/io5";
-import { getPokemons } from "src/services/index.service";
 
 import Alert from "src/components/Alert";
 import Badge from "src/components/Badge";
@@ -9,25 +8,18 @@ import Card from "src/components/Card";
 import Loading from "src/components/Loading";
 
 import { ApplicationState } from "src/store";
-import { PokemonTypes, PokemonWithoutImage } from "src/types";
-import { Pokemon } from "src/store/modules/pokemon/types";
-import {
-  setPokemonList,
-  pokemonWasCatched,
-} from "src/store/modules/pokemon/actions";
-import { addPokemon } from "src/store/modules/pokedex/actions";
+import { PokemonTypes } from "src/types";
+import { PokemonState, Pokemon } from "src/store/modules/pokemon/types";
+import { pokemonWasCatchedFromList } from "src/store/modules/pokemon/actions";
+import { addPokemonToPokedex } from "src/store/modules/pokedex/actions";
 
-import calyrex from "src/assets/calyrex.png";
-import glastrier from "src/assets/glastrier.png";
-import regieleki from "src/assets/regieleki.png";
-import regidrago from "src/assets/regidrago.png";
-import spectrier from "src/assets/spectrier.png";
+import { handleImageUrl } from "src/utils";
 
 const Pokedex: React.FC = () => {
   const dispatch = useDispatch();
 
-  const pokemons = useSelector<ApplicationState, Pokemon[]>(
-    (state) => state.pokemon.list
+  const pokemon = useSelector<ApplicationState, PokemonState>(
+    (state) => state.pokemon
   );
 
   const pokedex = useSelector<ApplicationState, Pokemon[]>(
@@ -35,21 +27,15 @@ const Pokedex: React.FC = () => {
   );
 
   const [searchValue, setSearchValue] = useState<string>("");
-  const [loadingPokemons, setLoadingPokemons] = useState<boolean>(true);
   const [filteredType, setFilteredType] = useState<PokemonTypes | null>(null);
   const [pokemonsByType, setPokemonsByType] = useState<Array<any | undefined>>(
     []
   );
 
-  const fetchPokemons = useCallback(async () => {
-    const pokemonsData = await getPokemons();
-    dispatch(setPokemonList(pokemonsData));
-    setLoadingPokemons(false);
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchPokemons();
-  }, [fetchPokemons]);
+  const [
+    loadingPokemonsFiltered,
+    setLoadingPokemonsFiltered,
+  ] = useState<boolean>(false);
 
   const onChangeCatchPokemon = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -57,29 +43,17 @@ const Pokedex: React.FC = () => {
     const id = Number(event.target.value);
 
     if (!pokedex.find((pokemon: Pokemon) => pokemon.id === id)) {
-      addPokemonToPokedex(id);
+      registerPokemonInPokedex(id);
     }
   };
 
-  const addPokemonToPokedex = (id: number): void => {
-    const newPokemon = pokemons.find((pokemon) => pokemon.id === id);
+  const registerPokemonInPokedex = (id: number): void => {
+    const newPokemon = pokemon.list.find((pokemon) => pokemon.id === id);
 
     if (newPokemon) {
-      dispatch(pokemonWasCatched(id));
-      dispatch(addPokemon(newPokemon));
+      dispatch(pokemonWasCatchedFromList(id));
+      dispatch(addPokemonToPokedex(newPokemon));
     }
-  };
-
-  const handlePokemonNumber = (id: number): string => {
-    if (id < 10) {
-      return `Nº 00${id}`;
-    }
-
-    if (id < 100) {
-      return `Nº 0${id}`;
-    }
-
-    return `Nº ${id}`;
   };
 
   const handleOnSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -91,20 +65,23 @@ const Pokedex: React.FC = () => {
   };
 
   const handleOnClickPokemonType = (type: PokemonTypes): void => {
-    setLoadingPokemons(true);
+    setLoadingPokemonsFiltered(true);
 
     const pokemonsFiltered = filterPokemonsByType(type);
 
+    // Usado para dar tempo de carregar as sprites dos pokémons
     setTimeout(() => {
       setSearchValue("");
       setFilteredType(type);
       setPokemonsByType(pokemonsFiltered);
-      setLoadingPokemons(false);
-    }, 300);
+      setLoadingPokemonsFiltered(false);
+    }, 100);
   };
 
   const filterPokemonsByType = (type: string): Pokemon[] => {
     const pokemonsFiltered: Pokemon[] = [];
+
+    const pokemons = pokemon.list;
 
     for (const pokemon of pokemons) {
       pokemon.types.forEach((typeData) => {
@@ -118,40 +95,15 @@ const Pokedex: React.FC = () => {
   };
 
   const backToPokedex = (): void => {
-    setLoadingPokemons(true);
+    setLoadingPokemonsFiltered(true);
 
+    // Usado para dar tempo de carregar as sprites dos pokémons
     setTimeout(() => {
       setSearchValue("");
       setPokemonsByType([]);
       setFilteredType(null);
-      setLoadingPokemons(false);
-    }, 300);
-  };
-
-  const handleImageUrl = (
-    name: string,
-    imageURL: string | null
-  ): string | null => {
-    switch (name) {
-      case PokemonWithoutImage.CALYREX: {
-        return calyrex;
-      }
-      case PokemonWithoutImage.GLASTRIER: {
-        return glastrier;
-      }
-      case PokemonWithoutImage.REGIELEKI: {
-        return regieleki;
-      }
-      case PokemonWithoutImage.REGIDRAGO: {
-        return regidrago;
-      }
-      case PokemonWithoutImage.SPECTRIER: {
-        return spectrier;
-      }
-      default: {
-        return imageURL;
-      }
-    }
+      setLoadingPokemonsFiltered(false);
+    }, 100);
   };
 
   const renderPokemonCards = (
@@ -163,8 +115,8 @@ const Pokedex: React.FC = () => {
           pokemon.id === parseInt(searchValue)) && (
           <Card
             key={pokemon.id}
-            title={handlePokemonNumber(pokemon.id)}
-            text={pokemon.name.toLocaleUpperCase()}
+            id={pokemon.id}
+            name={pokemon.name.toLocaleUpperCase()}
             imageURL={handleImageUrl(pokemon.name, pokemon.sprite)}
             badges={pokemon.types.map((typeData) => (
               <Badge
@@ -174,6 +126,7 @@ const Pokedex: React.FC = () => {
                 onClick={handleOnClickPokemonType}
               />
             ))}
+            deletable={!filteredType}
           />
         )
     );
@@ -181,7 +134,7 @@ const Pokedex: React.FC = () => {
 
   return (
     <div className="pokedex-container">
-      {loadingPokemons ? (
+      {pokemon.loading || loadingPokemonsFiltered ? (
         <Loading />
       ) : (
         <>
@@ -203,12 +156,12 @@ const Pokedex: React.FC = () => {
                 <p className="label">Capturar Pokémon</p>
                 <select
                   onChange={onChangeCatchPokemon}
-                  defaultValue="selecione"
+                  value={pokemon.selectInputValue}
                 >
-                  <option disabled value="selecione">
+                  <option disabled value={0}>
                     Selecione
                   </option>
-                  {pokemons.map((pokemon) => (
+                  {pokemon.list.map((pokemon) => (
                     <option key={pokemon.id} value={pokemon.id}>
                       {pokemon.name.toLocaleUpperCase()}
                       {pokemon.was_catched && " - (capturado)"}
@@ -237,7 +190,7 @@ const Pokedex: React.FC = () => {
             <div className="pokedex-title">
               Minha Pokédex
               <div className="pokedex-subtitle">
-                Capturados: {pokedex.length} / {pokemons.length}
+                Capturados: {pokedex.length} / {pokemon.list.length}
               </div>
             </div>
           )}

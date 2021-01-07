@@ -1,0 +1,172 @@
+@import "src/scss/colors";
+@import "src/scss/breakpoints";
+
+.pokemon-detail-content {
+  display: flex;
+  flex-flow: column;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.back-container {
+  margin-bottom: 20px;
+}
+
+.pokemon-detail-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1.6rem;
+  color: $body-bg-color;
+
+  .pokemon-name-number {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 24px;
+    margin: 0 0 30px 0;
+
+    .number {
+      margin: 0 12px 5px 0;
+    }
+
+    .name {
+      margin-bottom: 5px;
+    }
+
+    .badges-type {
+      width: 100%;
+      display: flex;
+      margin-bottom: 5px;
+      align-items: center;
+      flex-flow: row wrap;
+    }
+  }
+
+  .pokemon-image {
+    width: 40%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    background-color: $img-bg-color;
+    border: 1px solid $img-border-color;
+
+    .image {
+      width: 100%;
+      height: auto;
+    }
+
+    .broken-image {
+      width: 84.05%;
+      height: auto;
+      padding: 20px;
+    }
+  }
+
+  .pokemon-details {
+    width: 60%;
+    padding: 10px 0 10px 40px;
+
+    .details-container {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: stretch;
+    }
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .pokemon-stats,
+  .pokemon-sizes {
+    display: inline-block;
+    font-size: 16px;
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  .pokemon-evolutions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media screen and (min-width: ($sm + 1px)) {
+    .pokemon-stats {
+      width: 60%;
+    }
+
+    .pokemon-abilities {
+      width: 40%;
+
+      .ability-name {
+        margin-bottom: 8px;
+        text-decoration: underline;
+        text-underline-position: under;
+        cursor: pointer;
+      }
+    }
+
+    .pokemon-sizes {
+      display: flex;
+      flex-flow: row wrap;
+      p {
+        margin-bottom: 5px;
+        margin-right: 20px;
+      }
+    }
+
+    .pokemon-evolutions {
+      margin-top: 50px;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    .pokemon-name-number {
+      justify-content: center;
+      margin-bottom: 50px;
+
+      .badges-type {
+        justify-content: center;
+      }
+    }
+
+    .pokemon-image {
+      width: 100%;
+      margin-bottom: 10px;
+
+      .image {
+        width: 100%;
+        height: auto;
+      }
+
+      .broken-image {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+    }
+
+    .pokemon-details {
+      width: 100%;
+      padding: 0px;
+    }
+
+    .pokemon-stats,
+    .pokemon-abilities {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .pokemon-abilities,
+    .pokemon-stats {
+      margin-bottom: 50px;
+    }
+  }
+}

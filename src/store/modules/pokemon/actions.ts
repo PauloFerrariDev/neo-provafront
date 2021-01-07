@@ -33,3 +33,10 @@ export const pokemonWasReleasedFromList = (id: number) => {
     payload: { id },
   };
 };
+
+export const changePokemonImage = (id: number, imageURL: string) => {
+  return {
+    type: ActionType.CHANGE_POKEMON_IMAGE,
+    payload: { id, imageURL },
+  };
+};

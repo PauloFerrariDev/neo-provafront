@@ -57,11 +57,13 @@ export enum ActionType {
   RESET_POKEMON_SELECTED = "RESET_POKEMON_SELECTED",
   POKEMON_WAS_CATCHED = "POKEMON_WAS_CATCHED",
   POKEMON_WAS_RELEASED = "POKEMON_WAS_RELEASED",
+  CHANGE_POKEMON_IMAGE = "CHANGE_POKEMON_IMAGE",
 }
 
 export interface Payload {
   id: number;
   loading: boolean;
+  imageURL: string;
   pokemons: Pokemon[];
   selectInputValue: number;
 }

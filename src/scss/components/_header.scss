@@ -20,7 +20,7 @@
     @include images-logo;
   }
 
-  @media (max-width: $sm) {
+  @media screen and (max-width: $sm) {
     .pokemons-logo {
       display: none;
       visibility: hidden;

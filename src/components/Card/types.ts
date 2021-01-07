@@ -1,6 +1,8 @@
 export interface CardProps {
-  title: string;
-  text: string;
-  imageURL: string | null;
   badges?: JSX.Element[];
+  className?: string;
+  deletable: boolean;
+  id: number;
+  imageURL: string | null;
+  name: string;
 }

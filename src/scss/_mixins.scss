@@ -21,12 +21,23 @@
 
 @mixin alert {
   width: 100%;
-  padding: 25px;
+  display: flex;
+  padding: 15px;
   color: #fff;
-  letter-spacing: 1px;
-  font-size: 18px;
-  text-align: center;
   border-radius: 4px;
+  letter-spacing: 1px;
+  align-items: center;
+  justify-content: center;
+
+  .close-icon {
+    color: $red;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .short-effect {
+    margin-left: 18px;
+  }
 }
 
 @mixin badge {
@@ -40,6 +51,8 @@
   border-radius: 5px;
   text-transform: uppercase;
   margin: 3px;
+  margin-left: 0;
+  margin-right: 5px;
   width: 78px;
   cursor: default;
 }

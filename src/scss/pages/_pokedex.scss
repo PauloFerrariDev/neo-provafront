@@ -1,3 +1,5 @@
+@import "src/scss/breakpoints";
+
 .pokedex-container {
   .label {
     margin-bottom: 5px;
@@ -17,7 +19,7 @@
       width: 40%;
     }
 
-    @media (max-width: 789px) {
+    @media screen and (max-width: $sm) {
       flex-direction: column;
 
       .filter {
@@ -50,7 +52,7 @@
   .pokedex-title {
     display: flex;
     flex-flow: column wrap;
-    font-size: 18px;
+    font-size: 24px;
     letter-spacing: 1px;
     margin-bottom: 20px;
 
@@ -67,39 +69,39 @@
     width: 100%;
     height: auto;
   }
+}
 
-  .info-type-container {
-    margin-bottom: 20px;
+.info-type-container {
+  margin-bottom: 10px;
+}
 
-    .back-container {
-      display: inline-block;
+.back-container {
+  display: inline-block;
 
-      .back {
-        display: flex;
-        align-items: center;
-        letter-spacing: 1px;
-        border-radius: 4px;
-        text-decoration: underline;
-        text-underline-position: under;
-        cursor: pointer;
+  .back {
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer;
 
-        .back-icon {
-          font-size: 18px;
-          margin: 0 4px 0px -2px;
-        }
-      }
+    .back-icon {
+      font-size: 18px;
+      margin: 0 4px 0px -2px;
     }
+  }
+}
 
-    .info-type {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-      margin-top: 10px;
+.info-type {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 
-      span {
-        font-size: 18px;
-        letter-spacing: 1px;
-      }
-    }
+  span {
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-right: 5px;
   }
 }

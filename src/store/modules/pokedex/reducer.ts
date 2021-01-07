@@ -23,8 +23,15 @@ const pokedex: Reducer<PokedexState, Action> = (
         break;
       }
       case ActionType.DELETE_POKEMON: {
-        console.log("delete_pokemon");
-        return draft;
+        const { id } = action.payload;
+
+        const index = draft.pokemons.findIndex((pokemon) => pokemon.id === id);
+
+        if (index >= 0) {
+          draft.pokemons.splice(index, 1);
+        }
+
+        break;
       }
       default: {
         return draft;

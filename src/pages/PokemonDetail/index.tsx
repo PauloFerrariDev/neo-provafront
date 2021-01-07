@@ -6,6 +6,7 @@ import { handlePokemonNumber } from "src/utils";
 import Alert from "src/components/Alert";
 import Badge from "src/components/Badge";
 import EvolutionChain from "src/components/EvolutionChain";
+import UploadButton from "src/components/UploadButton";
 
 import { resetPokemonSelected } from "src/store/modules/pokemon/actions";
 
@@ -58,13 +59,20 @@ const PokemonDetail: React.FC = () => {
           </div>
 
           <div className="pokemon-details">
-            <div className="pokemon-name-number">
-              <p className="number">
-                {handlePokemonNumber(pokemon_selected.id).toLocaleUpperCase()}
-              </p>
-              <p className="name">
-                {pokemon_selected.name.toLocaleUpperCase()}
-              </p>
+            <div className="details-header">
+              <div className="details-name">
+                <p className="number">
+                  {handlePokemonNumber(pokemon_selected.id).toLocaleUpperCase()}
+                </p>
+                <p className="name">
+                  {pokemon_selected.name.toLocaleUpperCase()}
+                </p>
+              </div>
+
+              <div className="upload-button-container">
+                <UploadButton id={pokemon_selected.id} text="Alterar Imagem" />
+              </div>
+
               <div className="badges-type">
                 {pokemon_selected.types.map((typeData) => (
                   <Badge type={typeData.type.name} />
@@ -76,7 +84,7 @@ const PokemonDetail: React.FC = () => {
               </div>
             </div>
 
-            <div className="details-container">
+            <div className="details-body">
               <div className="pokemon-stats">
                 <p className="section-title">STATS</p>
 

@@ -12,9 +12,11 @@ export interface Action {
 export enum ActionType {
   ADD_POKEMON = "ADD_POKEMON",
   DELETE_POKEMON = "DELETE_POKEMON",
+  CHANGE_POKEMON_IMAGE = "CHANGE_POKEMON_IMAGE",
 }
 
 export interface Payload {
   id: number;
   pokemon: Pokemon;
+  imageURL: string;
 }

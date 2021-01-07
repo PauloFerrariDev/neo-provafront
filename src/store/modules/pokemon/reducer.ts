@@ -72,6 +72,24 @@ const pokemon: Reducer<PokemonState, Action> = (
 
         break;
       }
+      case ActionType.CHANGE_POKEMON_IMAGE: {
+        const { id, imageURL } = action.payload;
+
+        const index = draft.list.findIndex((pokemon) => pokemon.id === id);
+
+        if (index >= 0) {
+          const pokemon = draft.list[index];
+          pokemon.sprite = imageURL;
+
+          draft.list[index] = pokemon;
+
+          if (draft.pokemon_selected) {
+            draft.pokemon_selected.sprite = imageURL;
+          }
+        }
+
+        break;
+      }
       default: {
         return draft;
       }

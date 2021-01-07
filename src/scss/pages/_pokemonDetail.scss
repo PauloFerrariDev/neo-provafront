@@ -19,18 +19,27 @@
   padding: 1.6rem;
   color: $body-bg-color;
 
-  .pokemon-name-number {
+  .details-header {
     display: flex;
     flex-wrap: wrap;
     font-size: 24px;
     margin: 0 0 30px 0;
 
-    .number {
-      margin: 0 12px 5px 0;
+    .details-name {
+      display: flex;
+      flex-direction: column;
+
+      .number {
+        margin: 0 12px 5px 0;
+      }
+
+      .name {
+        margin-bottom: 5px;
+      }
     }
 
-    .name {
-      margin-bottom: 5px;
+    .upload-button-container {
+      margin: 5px 35px;
     }
 
     .badges-type {
@@ -45,14 +54,16 @@
   .pokemon-image {
     width: 40%;
     height: auto;
-    display: block;
+    display: flex;
     border-radius: 4px;
     background-color: $img-bg-color;
     border: 1px solid $img-border-color;
+    border-radius: 4px;
 
     .image {
       width: 100%;
       height: auto;
+      border-radius: 4px;
     }
 
     .broken-image {
@@ -66,7 +77,7 @@
     width: 60%;
     padding: 10px 0 10px 40px;
 
-    .details-container {
+    .details-body {
       display: flex;
       flex-flow: row wrap;
       align-items: stretch;
@@ -95,7 +106,7 @@
     align-items: center;
   }
 
-  @media screen and (min-width: ($sm + 1px)) {
+  @media screen and (min-width: 1134px) {
     .pokemon-stats {
       width: 60%;
     }
@@ -125,12 +136,18 @@
     }
   }
 
-  @media screen and (max-width: $sm) {
-    .pokemon-name-number {
+  @media screen and (max-width: 1134px) {
+    .details-header {
       justify-content: center;
       margin-bottom: 50px;
 
+      .details-name {
+        justify-content: center;
+        align-items: center;
+      }
+
       .badges-type {
+        margin-top: 15px;
         justify-content: center;
       }
     }

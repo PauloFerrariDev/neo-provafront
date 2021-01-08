@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Pokédex - Pokémon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pokédex é um pequeno aparelho eletrônico que contém informações de todos os pokémons presentes no universo Pokémon.
 
-## Available Scripts
+##### Clone este repositório
 
-In the project directory, you can run:
+`$ git clone https://github.com/PauloFerrariDev/neo-provafront.git`
 
-### `yarn start`
+##### Acesse a pasta do projeto no terminal/cmd
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`$ cd neo-provafront`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##### Instale as dependências
 
-### `yarn test`
+`$ npm install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Execute a aplicação em modo de desenvolvimento
 
-### `yarn build`
+`$ npm start` ou `$ yarn start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### A aplicação inciará na porta:3333 - acesse <http://localhost:3333>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tecnologias
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As seguintes ferramentas foram usadas na construção do projeto:
 
-### `yarn eject`
+- [React](https://pt-br.reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Principais Libs
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As principais libs utilizadas no projeto:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [Axios](https://github.com/axios/axios)
+- [React-Icons](https://react-icons.github.io/react-icons/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Features
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [x] Capturar Pokémon (adicionar à Pokédex)
+- [x] Libertar Pokémon (excluir da Pokédex)
+- [x] Filtrar pokémons por nome ou número
+- [x] Filtrar pokémons por tipo
+- [x] Visualizar informações do Pokémon
+- [x] Visualizar evoluções do Pokémon
+- [x] Alterar imagem do Pokémon

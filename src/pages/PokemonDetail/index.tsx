@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IoArrowBack } from "react-icons/io5";
 import { handlePokemonNumber } from "src/utils";
@@ -15,6 +15,8 @@ import { Pokemon } from "src/store/modules/pokemon/types";
 
 import noImageAvailable from "src/assets/no-image-available.png";
 
+import { handleImageUrl } from "src/utils";
+
 const PokemonDetail: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -24,6 +26,18 @@ const PokemonDetail: React.FC = () => {
 
   const [abilityURL, setAbilityURL] = useState("");
   const [abilityName, setAbilityName] = useState("");
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pokemon_selected) {
+      const imageURL = handleImageUrl(
+        pokemon_selected.name,
+        pokemon_selected.sprite
+      );
+
+      setImageSrc(imageURL);
+    }
+  }, [pokemon_selected]);
 
   const handleResetPokemonSelected = () => {
     dispatch(resetPokemonSelected());
@@ -43,9 +57,9 @@ const PokemonDetail: React.FC = () => {
 
         <div className="pokemon-detail-content">
           <div className="pokemon-image">
-            {pokemon_selected.sprite ? (
+            {imageSrc ? (
               <img
-                src={pokemon_selected.sprite}
+                src={imageSrc}
                 alt={pokemon_selected.name}
                 className="image"
               />

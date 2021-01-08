@@ -75,7 +75,7 @@ const Pokedex: React.FC = () => {
       setFilteredType(type);
       setPokemonsByType(pokemonsFiltered);
       setLoadingPokemonsFiltered(false);
-    }, 100);
+    }, 200);
   };
 
   const filterPokemonsByType = (type: string): Pokemon[] => {
@@ -103,7 +103,7 @@ const Pokedex: React.FC = () => {
       setPokemonsByType([]);
       setFilteredType(null);
       setLoadingPokemonsFiltered(false);
-    }, 100);
+    }, 200);
   };
 
   const renderPokemonCards = (
